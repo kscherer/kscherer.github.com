@@ -1,0 +1,14 @@
+---
+layout: default
+---
+{% if page.post-link %}
+<h1><a href="{{ page.post-link }}" title="External link">{{ page.title }}</a></h1>
+{% else %}
+<h1>{{ page.title }}</h1>
+{% endif %}
+<div id="post">
+{{ content }}
+</div>
+
+<div align="right" class="date-container">{{ page.date | date:"%e %B %Y @ %I:%M%p" | upcase }}</div>
+
