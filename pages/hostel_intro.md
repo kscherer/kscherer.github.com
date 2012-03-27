@@ -52,4 +52,44 @@ VirtualBox at 200% overhead.
 I did some research but I can only speculate. Xen and VMware support
 PCI passthrough where a PCI traffic is routed directly from guest to
 physical hardware by the hypervisor. Qemu has an IO thread that
-collects IO requests and this becomes the bottleneck.
+collects IO requests and if this is true, then this could be the
+bottleneck.
+
+I plan to re-run this test to see if the KVM performance has
+improved.
+
+### Provisioning
+
+The standard virtualization method uses images to create new
+instances. With all the combinations of distro and architecture I was
+looking at over 30 different images. I was also worried that the
+images would not be easily moved from one virtualization solution to
+another. I did some research and found
+[Cobbler](https://github.com/cobbler/cobbler) which was the only
+provisioning system to list support for RedHat, Debian _and_
+Suse. Using cobbler to manage network or PXE installs simplifies that
+creation of all the VMs. In the end all I had to manage was 5 files: a
+kickstart for all RedHat and Fedora systems, 2 preseeds for Ubuntu and
+Debian and 2 autoyast.xml files for OpenSuse and SLED.
+
+Pros of cobbler approach
+- Manage only templated kickstart files, no images
+- No lock-in to virtualization solution. Also works with bare metal
+- Excellent integration with DHCP and DNS for provisioned machines
+
+Cons
+- Extra time to learn kickstart, preseed and autoyast
+- Can be difficult to fit into existing DHCP and network
+  infrastructure
+- Debian and OpenSuSE are second class citizens
+- Puppet integration lacking but improving
+
+I have written several other documents on setting up Cobbler on Debian
+Squeeze and the other infrastructure needed to get all these distros
+installed
+
+[Cobbler Package Port from Ubuntu to Debian]({{ site.baseurl }}pages/cobbler_debian_port.html)
+
+[Cobbler Setup]({{ site.baseurl }}pages/cobbler_setup.html)
+
+I will be uploading the configs to their own github repo.
