@@ -3,9 +3,9 @@ layout: page
 title: "Host Test Lab Introduction"
 ---
 
-## {{ page.title }}
+# {{ page.title }}
 
-### What is a Host Test Lab?
+## What is a Host Test Lab?
 
 The embedded Linux team at Wind River is a commercial Linux
 distribution that most of our customers build from source. When
@@ -31,7 +31,7 @@ resources permits.
 The Host Test Lab or Hostel is where all the coverage building on the
 various Linux distributions is done.
 
-### Virtualization
+## Virtualization
 
 Running RedHat 4 on newer hardware is getting more and more difficult
 and needing to be able to quickly create and erase installations of a
@@ -58,7 +58,7 @@ bottleneck.
 I plan to re-run this test to see if the KVM performance has
 improved.
 
-### Provisioning
+## Provisioning
 
 The standard virtualization method uses images to create new
 instances. With all the combinations of distro and architecture I was
