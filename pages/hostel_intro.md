@@ -89,7 +89,36 @@ Squeeze and the other infrastructure needed to get all these distros
 installed
 
 [Cobbler Package Port from Ubuntu to Debian]({{ site.baseurl }}pages/cobbler_debian_port.html)
-
 [Cobbler Setup]({{ site.baseurl }}pages/cobbler_setup.html)
 
 I will be uploading the configs to their own github repo.
+
+## Puppet
+
+It is not enough to just install the machines and walk away. Software
+configuration changes, hardware needs to be replaced, network
+configuration changes, etc. That is where a configuration management
+tool like Puppet comes in.
+
+Puppet is several things:
+
+- computer language for describing the state of various computer
+resources like files and services
+- a runtime environment to compare the current state of system against
+  a description written in the Puppet language.
+- an optional client-server application
+
+To simplify resource definition, Puppet includes a tool called facter
+which collects facts about the current state of a machine like
+architecture, linux kernel version, etc. The facts are then made
+available inside the Puppet language to make decisions about the
+desired configuration. For example, the ntp configuration can have a
+Debian and RedHat version.
+
+There is also an abstraction layer for things like services and
+packages. Puppet by default uses yum on RedHat machines and apt on
+Debian machines. It cannot completely hide the package naming
+differences but it can simplify them.
+
+I also plan to upload the Puppet classes used at Wind River and some
+of the configuration used to allow multiple users to collaborate.
