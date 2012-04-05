@@ -5,8 +5,8 @@ title: "Host Test Lab Infrastructure"
 
 # {{ page.title }}
 
-Mount ISO files as normal user
-=====
+## Mount ISO files as normal user
+
 
 Cobbler supports cobbler import to simplify installation of various
 Linux distributions. It scans a mounted iso for any relevant kernels,
@@ -19,8 +19,7 @@ need. Cobbler supports import of remote loopback mounted iso with the
 fuseiso to make it possible to normal user to loopback mount iso
 files. What follows is a guide to combining all of these things.
 
-Setup fuseiso
-====
+## Setup fuseiso
 
 On Ubuntu and Debian it is simple
     sudo aptitude install fuseiso
@@ -47,8 +46,7 @@ option
 
 Root access is no longer necessary.
 
-Mount ISO files
-====
+## Mount ISO files
 
 To mount an iso the command is:
 
@@ -80,8 +78,7 @@ To automate the process I use code like this:
        done
     done
 
-Cobbler Distro Import
-=====
+## Cobbler Distro Import
 
 Cobbler supports "import" of distros which scans an existing directory
 for valid kernels, etc and creates the corresponding distro and

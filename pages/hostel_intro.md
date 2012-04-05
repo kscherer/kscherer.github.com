@@ -122,3 +122,29 @@ differences but it can simplify them.
 
 I also plan to upload the Puppet classes used at Wind River and some
 of the configuration used to allow multiple users to collaborate.
+
+## MCollective
+
+The full name is Marionette Collective. This is a command and control
+software framework that allows me to query and execute commands on
+large groups of machines in parallel. It uses existing well tested
+middleware software ActiveMQ (or RabbitMQ) instead of using ssh like
+most of the other software in this space.
+
+The main purpose is to spread out the puppet runs evenly among all
+systems. The default option in puppet is to have all systems connect
+to the puppet master every 30 minutes. This inevitably creates a
+thundering herd problem. Puppet Commander neatly solves this by
+querying all systems with puppet installed and then scheduling them
+evenly over a fixed time period. This keeps the load on the puppet
+master even.
+
+The next major use is for monitoring. I am using Nagios and the
+standard way to gather stats from monitored systems is to run a nrpe
+service on the system. The nagios server then logs into each system
+regularily to collect data. Using the broadcast mechanism in
+MCollective makes this much more efficient. All systems can be checked
+in one broadcast triggered by one Nagios call.
+
+The most difficult part of MCollective is the setup and getting your
+head around how it works.

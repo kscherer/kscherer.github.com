@@ -5,6 +5,10 @@ title: "Setup cobbler on Debian Squeeze"
 
 # {{ page.title }}
 
+This page assumes you have built the Ubuntu packages for Debian
+Squeeze and put them in a repo. I use reprepro to maintain local
+repos.
+
 Install the necessary packages.
 
     aptitude install -R cobbler cobbler_web
@@ -62,8 +66,7 @@ I also had to edit /etc/cobbler/tftpd.template to change $binary to
 
 Restart cobbler and run cobbler sync to apply changes.
 
-Add distros and profiles
-----
+## Add distros and profiles
 
 Run cobbler_2.2_distro_import.sh script. This uses the base repos
 synced (as mentioned in mountiso doc) and loads the pxe boot kernel
@@ -73,8 +76,7 @@ The script runs cobbler reposync and cobbler sync to get the
 filesystem up to date. 
 
 
-Setup PXE boot for Debian
-----
+## Setup PXE boot for Debian
 
 Copy linux and initrd.gz from Debian mirror to local system dir like /repos/debian-squeeze/
 http://mirror/debian/dists/squeeze/main/installer-amd64/current/images/netboot/debian-installer/amd64/
@@ -109,9 +111,7 @@ boot for the boot menu. The PXE boot should get an IP address over
 DHCP and then download the kernel and initrd from TFTP and boot into
 the installer.
 
-
-Installation of RedHat VM
------
+## Installation of RedHat VM
 
 Cobbler needs to know about the system, so use cobbler system add to
 create the system. The mac, ip address, name etc will depend on the
