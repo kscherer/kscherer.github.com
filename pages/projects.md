@@ -14,7 +14,7 @@ using Xen, Cobbler, Puppet, MCollective and more.
 * [Porting Ubuntu cobbler package to Debian Squeeze]({{ site.baseurl }}pages/cobbler_debian_port.html)
 * [Host Test Lab support infrastructure]({{ site.baseurl }}pages/hostel_infrastructure.html)
 * [Cobbler server]({{ site.baseurl }}pages/cobbler_setup.html)
-
+* [VM installation using Koan]({{ site.baseurl }}pages/vm_installation.html)
 
 ## Open Source
 

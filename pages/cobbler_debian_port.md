@@ -14,6 +14,8 @@ those packages for Squeeze. To make things interesting I thought I
 would do the rebuild on my Ubuntu 11.10 laptop which already has all
 the build tools installed.
 
+## Get Ubuntu packaging for Cobbler
+
 Grab files from Launchpad for latest cobbler sources
 
     wget https://launchpad.net/ubuntu/+archive/primary/+files/cobbler_2.2.2.orig.tar.gz
@@ -53,3 +55,9 @@ Check the dependencies
     dpkg-deb --info /var/cache/pbuilder/squeeze-amd64/cobbler_2.2.2-1_all.deb
 
 Repeat with python-ethtool
+
+## Make local debian repo
+
+Easiest way to create local repo is with reprepro. Best intro into
+setting up reprepro is here:
+http://infrastructureanywhere.com/documentation/additional/mirrors.html#reprepro

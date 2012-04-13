@@ -111,28 +111,5 @@ boot for the boot menu. The PXE boot should get an IP address over
 DHCP and then download the kernel and initrd from TFTP and boot into
 the installer.
 
-## Installation of RedHat VM
-
-Cobbler needs to know about the system, so use cobbler system add to
-create the system. The mac, ip address, name etc will depend on the
-network environment.
-
-    cobbler system add --name=yow-lpgbld-vm9
-    --profile=redhat-5.5-xen-i386 --hostname=yow-lpgbld-vm9
-    --dns-name=yow-lpgbld-vm9.wrs.com --ip-address=128.224.194.29
-    --mac-address=AA:00:00:00:00:09 --netboot-enabled=true
-    
-The profile links to redhat.ks which uses a lot of snippets to
-work. Make sure all the snippets referenced in the kickstart are
-copied or linked into /var/lib/cobbler/snippets. redhat.ks uses
-snippets like base_install and post_install_script.
-
-To install on virtual hardware, install koan on the Dom0. Koan stands
-for "kickstart over network". The following command will retrieve the
-configuration for the system registered in cobbler as vm9 and use
-libvirt to kickstart the system.
-
-    koan --server yow-lpgbld-master --virt
-    --system=yow-lpgbld-vm9 --virt-name=yow-lpgbld-vm9 --virt-type=xenpv
-    --virt-path=/dev/mapper/vg-vm --virt-bridge=br0 --vm-poll
-
+Use cobbler to install Debian Squeeze with Xen on other hosts and now
+everything is in place to install virtual machines.
