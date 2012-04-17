@@ -109,7 +109,7 @@
 ================================================== */
 	ul, ol { margin: 10px 0 10px 10px; }
 	ul { list-style: disc inside; text-indent: -1em; padding-left: 1em; }
-	ol { list-style: decimal; }
+	ol { list-style: decimal; padding-left: 1em; }
 
 /* #Images
 ================================================== */

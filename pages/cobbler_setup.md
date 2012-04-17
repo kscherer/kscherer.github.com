@@ -24,6 +24,9 @@ Some setting need to adjusted:
 - manage_dhcp: 1
 - manage_dns: 1
 - manage_tftp: 1
+- virt_auto_boot: 0
+
+Cobbler does not support auto boot with Xen.
 
 Change modules.conf to tell cobbler to use dnsmasq for dhcp and dns
 and the internal tftp server.
@@ -43,6 +46,7 @@ The configuration for dnsmasq is controlled by cobbler. The file
 /etc/dnsmasq.conf is overwritten by 'cobbler sync'. Modify the
 /etc/cobbler/dnsmasq.template to contain the following (the dns server
 and network params will need to change):
+
     read-ethers
     addn-hosts = /var/lib/cobbler/cobbler_hosts
     no-resolv #ignore /etc/resolv.conf
