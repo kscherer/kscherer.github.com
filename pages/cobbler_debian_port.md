@@ -31,11 +31,12 @@ Update the changelog
     EDITOR=emacsclient dch --newversion=2.2.2-1 --distribution=squeeze
 
 Change debian/control file to change XS-Python-Version: >= 2.4
-Remove cobbler.upstart file
+
+Remove cobbler.upstart file.
+
 Copy cobbler/config/cobblerd to cobbler/debian/cobbler.init
 
-Setup pbuilder using instructions here:
-https://wiki.ubuntu.com/PbuilderHowto
+Setup pbuilder using instructions on [Ubuntu Wiki][1]:
 
 At the bottom section about adding local packages to the chroot, there
 is a pbuilerrc which can handle both Ubuntu and Debian. Copy this to
@@ -44,7 +45,9 @@ is a pbuilerrc which can handle both Ubuntu and Debian. Copy this to
 Create squeeze environment using pbuilder
 
     sudo apt-get install debian-archive-keyring.gpg
-    sudo DIST=squeeze pbuilder create --distribution squeeze --mirror http://yow-mirror.ottawa.wrs.com/mirror/debian --debootstrapopts --keyring=/usr/share/keyrings/debian-archive-keyring.gpg
+    sudo DIST=squeeze pbuilder create --distribution squeeze \
+      --mirror http://<mirror>/debian --debootstrapopts \
+      --keyring=/usr/share/keyrings/debian-archive-keyring.gpg
 
 Run pbuilder with squeeze environment
 
@@ -58,6 +61,8 @@ Repeat with python-ethtool
 
 ## Make local debian repo
 
-Easiest way to create local repo is with reprepro. Best intro into
-setting up reprepro is here:
-http://infrastructureanywhere.com/documentation/additional/mirrors.html#reprepro
+Easiest way to create local repo is with reprepro. The best intro I
+know of how to set up reprepro is on [InfrastructureAnywhere][2]
+
+[1]: https://wiki.ubuntu.com/PbuilderHowto
+[2]: http://infrastructureanywhere.com/documentation/additional/mirrors.html#reprepro
