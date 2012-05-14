@@ -15,6 +15,7 @@ using Xen, Cobbler, Puppet, MCollective and more.
 * [Host Test Lab support infrastructure]({{ site.baseurl }}pages/hostel_infrastructure.html)
 * [Cobbler server]({{ site.baseurl }}pages/cobbler_setup.html)
 * [VM installation using Koan]({{ site.baseurl }}pages/vm_installation.html)
+* [Puppet Infrastructure]({{ site.baseurl }}pages/puppet.html)
 
 ## Open Source
 
