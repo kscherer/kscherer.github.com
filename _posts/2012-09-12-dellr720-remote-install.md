@@ -1,8 +1,8 @@
 ---
-layout: page
+layout: post
 title: "Dell R720 Server install"
+tags: []
 ---
-# {{ page.title }}
 
 Got a brand new Dell R720 server to install recently. The task sounded
 simple enough: Install CentOS 6.3 x86_64 on the machine as quickly as
