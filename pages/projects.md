@@ -16,6 +16,7 @@ using Xen, Cobbler, Puppet, MCollective and more.
 * [Cobbler server]({{ site.baseurl }}pages/cobbler_setup.html)
 * [VM installation using Koan]({{ site.baseurl }}pages/vm_installation.html)
 * [Puppet Infrastructure]({{ site.baseurl }}pages/puppet.html)
+* [ActiveMQ Infrastructure]({{ site.baseurl }}pages/activemq_setup.html)
 
 ## Open Source
 
@@ -25,4 +26,4 @@ I have made small contributions to the following projects:
 * The provisioning server [Cobbler](https://github.com/cobbler/cobbler)
 * Emacs Lisp configuration management framework
   [El-get](https://github.com/dimitri/el-get)
-  
+
