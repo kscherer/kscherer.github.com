@@ -19,54 +19,61 @@ direct_addressing is enabled in the client, but not on the server,
 connections will fail.
 
 I have put the spec file I used to make 5.6 and 5.7 activemq rpms on
-[GitHub][activemq_repo]. I have also submitted this to puppetlabs, so hopefully it
+[GitHub][1]. I have also submitted this to puppetlabs, so hopefully it
 will make it into puppetlabs repo.
 
 Here are a few things I have learned.
 
-Activemq 5.6+ tarball contains configurations which use a new
+The Activemq 5.6+ tarball contains configurations which use a new
 ${activemq.data} variable. This variable needs to be setup in the
 activemq-wrapper.conf. This is missing from the activemq 5.6 rpm in
 the PE repo.
 
-Snippets from default activemq.xml shipped by PuppetLabs
+Here is the broker definition from default activemq.xml shipped by PuppetLabs
 
     <broker xmlns="http://activemq.apache.org/schema/core"
       brokerName="localhost" dataDirectory="${activemq.base}/data"
       destroyApplicationContextOnStop="true">
-    </broker>
 
-destroyApplicationContextOnStop is no longer supported in 5.6+.
+The configuration destroyApplicationContextOnStop is no longer supported in 5.6+.
+
+Here is an excerpt from the transport section.
 
     <transportConnectors>
       <transportConnector name="openwire" uri="tcp://0.0.0.0:61616"/>
       <transportConnector name="stomp+nio" uri="stomp+nio://0.0.0.0:61613"/>
     </transportConnectors>
 
-The activemq stomp [example][2] has the following configuration.
+I compared this to the activemq stomp [example][2] which has the
+following configuration.
 
     <transportConnector name="stomp+nio" uri="stomp://0.0.0.0:6163?transport.closeAsync=false"/>
 
-I have added transport.closeAsync=false to my configs, but does anyone
-know why this is a good idea for stomp? The activemq docs only states
-that connections are closed synchronously.
+Based on this recommendation, I have added transport.closeAsync=false
+to my configs, but does anyone know why this is a good idea for stomp?
+The activemq docs only states that connections are closed
+synchronously.
 
 I was also getting out of memory errors often. Turns out there is a
-ActiveMQ FAQ [entry][3] for this:
+ActiveMQ FAQ [entry][3] for this. I modified activemq-wrapper.conf to
+include the following configuration:
 
-After adding `-Dorg.apache.activemq.UseDedicatedTaskRunner=false` to the
-activemq-wrapper.conf, ActiveMQ uses a lot less memory. Which probably
-is why it seems to be much more stable now. Turning off the task
-runner switches ActiveMQ to use a thread pool instead of a thread per
-connection. Some [people][4] suggest that the thread pool should be the
-default. It helped me, so I am passing this info along. I am curious
-if anyone else has experience with this setting.
+    -Dorg.apache.activemq.UseDedicatedTaskRunner=false 
+
+With this change, ActiveMQ uses a lot less memory. Which probably is
+why it seems to be much more stable now.
+
+Turning off the task runner switches ActiveMQ to use a thread pool
+instead of a thread per connection. Some [people][4] suggest that the
+thread pool should be the default. It helped me, so I am passing this
+info along. I am curious if anyone else has experience with this
+setting.
 
 For the curious, the mess that is my puppet repos is also available on
 [GitHub][5]. The templates for my activemq.xml, activemq-wrapper.conf
 are located in modules/wr/templates.
 
-[activemq_repo]: https://github.com/kscherer/activemq-rpm
+[1]: https://github.com/kscherer/activemq-rpm
 [2]: http://svn.apache.org/repos/asf/activemq/trunk/assembly/src/sample-conf/activemq-stomp.xml
 [3]: http://activemq.apache.org/javalangoutofmemory.html
 [4]: http://www.commonsensecode.com/2010/07/02/activemq-supporting-thousands-of-concurrent-connections/
