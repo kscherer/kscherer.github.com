@@ -36,7 +36,7 @@ great tool! I ran the following:
 Then I used FireFox to open the audio stream and saw the following in
 a long stream of output in the console where I ran ngrep:
 
-> T xxx.xxx.xxx.xxx:35064 -> 64.208.5.41:80 [AP]
+> T xxx.xxx.xxx.xxx:35064 -> 64.208.5.41:80
 > GET /maven_legacy/thumbnails/ideas_20111213_27203_uploaded.mp3 HTTP/1.1.
 > Host: thumbnails.cbc.ca.
 
