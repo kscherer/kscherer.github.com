@@ -15,7 +15,7 @@ title : Another Blog
 tagline: Trying to be a producer, not just a consumer of content
 author :
   name : Konrad Scherer
-  email : kmscherer@gmail.com
+  email : konrad@darnok.net
   github : kscherer
 #  twitter : username
 #  feedburner : feedname
@@ -28,7 +28,7 @@ author :
 # Else if you are pushing to username.github.com, replace with your username.
 # Finally if you are pushing to a GitHub project page, include the project name at the end.
 #
-production_url : http://kscherer.github.com
+production_url : http://kscherer.github.io
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
