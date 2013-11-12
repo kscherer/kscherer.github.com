@@ -76,8 +76,13 @@ Okay I know that this physical disk maps to the device /dev/sdf and I
 initiated a shutdown of the vm that uses that disk.
 
 The disk with predicted failure has a flashing amber light which makes
-it easy to figure out which one to swap. The only unfortunate thing is
-that the RAID0 requires manual initialization and a server reboot.
+it easy to figure out which one to swap.
+
+Once the swap is complete run the following command to recreate the vdisk.
+
+    omconfig storage controller controller=0 action=createvdisk raid=r0 size=max pdisk=1:0:4
+
+And /dev/sdf is available once again.
 
 [1]: https://github.com/camptocamp/puppet-dell
 [2]: http://folk.uio.no/trondham/software/check_openmanage.html
