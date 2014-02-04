@@ -17,6 +17,7 @@ using Xen, Cobbler, Puppet, MCollective and more.
 * [VM installation using Koan]({{ site.baseurl }}pages/vm_installation.html)
 * [Puppet Infrastructure]({{ site.baseurl }}pages/puppet.html)
 * [ActiveMQ Infrastructure]({{ site.baseurl }}pages/activemq_setup.html)
+* [Foreman and Xen VM Installation]({{ site.baseurl }}pages/foreman_xen_vm_installation.html)
 
 ## Open Source
 
