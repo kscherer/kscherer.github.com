@@ -53,7 +53,7 @@ entry and /var/lib/tftpboot to make sure PXE template was correct.
 
 I liked how easy it was to preview the kickstart/preseed templates.
 
-## VM setup on Xen host
+## RedHat 5.x VM setup on Xen host
 
 Cobbler had the Koan tool which completely automated the next
 part. Back to the manual process for creating Xen PV guests. I tried
@@ -61,9 +61,8 @@ installing the guests as HVM with the PXE boot process, but on RedHat
 5.10, the non-xen kernel got installed and the resulting image was
 useless.
 
-1. Retrieve the kernel and initrd manually and install on the local
-   disk of the Xen host. I put them in /etc/xen/pxe. If there are Xen
-   versions, get those.
+1. Retrieve the xen kernel and initrd manually and install on the local
+   disk of the Xen host. I put them in /etc/xen/pxe.
 1. Create a xm cfg file with the kernel and another with pygrub.
 1. Boot the first config to install the system and then boot the
    second.
@@ -95,5 +94,25 @@ The pv boot template:
 I didn't realize how much I had been spoiled with Koan. This is
 doable, but takes some time. It can be automated, but I don't do it
 often enough to justify fully automating the process.
+
+## RedHat 6.x VM setup on Xen Host
+
+The RedHat 6.x kernel works both in hvm and pv mode, so the hvm mode
+can be used to install the rootfs. This avoids the coping step of the
+kernel and initrd.
+
+The hvm template:
+
+    name = "vm"
+    builder = 'hvm'
+    kernel = "/usr/lib/xen-4.1/boot/hvmloader"
+    boot = 'nc'
+    disk = [ "phy:<disk>,xvda,w" ]
+    vif = [ 'mac=<mac>,bridge=<bridge>' ]
+    vfb = [ 'type=vnc,vncunused=1,vnclisten=0.0.0.0' ]
+    on_shutdown = 'destroy'
+    on_reboot = 'destroy'
+
+The pv boot template is the same.
 
 [1]: http://theforeman.org/
