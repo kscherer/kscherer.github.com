@@ -125,11 +125,14 @@ Here are the contents of the isolinux.cfg after editing:
 
     label preseed
         kernel linux
-        append vga=788 initrd=initrd.gz locale=en_US auto url=<server>/my.preseed priority=critical interface=eth0 console-setup/ask_detect=false console-setup/layout=us --
+        append vga=788 initrd=initrd.gz locale=en_US auto \
+            url=<server>/my.preseed priority=critical interface=eth0 \
+            console-setup/ask_detect=false console-setup/layout=us --
 
 Then make a new iso:
 
-    mkisofs -o ubuntu-precise.iso -b isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -R -J -v -T ubuntu/
+    mkisofs -o ubuntu-precise.iso -b isolinux.bin -c boot.cat \
+        -no-emul-boot -boot-load-size 4 -boot-info-table -R -J -v -T ubuntu/
 
 Then the process is almost completely automated. Except that the
 server cannot download the preseed until the networking is
