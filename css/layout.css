@@ -78,7 +78,7 @@ a, a:visited {
 }
 
 .title a {
-  font-size: 30pt;
+  font-size: 5.0rem;
   color: #aa0000;
   text-decoration: none;
 }
@@ -162,6 +162,10 @@ code {
   padding: 0.5em 1em;
   border: 1px solid #bebab0;
   margin-bottom: 1em;
+}
+
+.columns {
+    margin-left: 0%;
 }
 
 /* #Page Styles
