@@ -78,7 +78,7 @@ a, a:visited {
 }
 
 .title a {
-  font-size: 5.0rem;
+  font-size: 6.0rem;
   color: #aa0000;
   text-decoration: none;
 }
@@ -100,17 +100,6 @@ a, a:visited {
 
 .title .twitter-follow-button {
   float: right;
-  font-size: 15px;
-}
-
-blockquote {
-  /* margin: 1em 3em; */
-  margin: 0 2em 20px 1em;
-  border-left: 2px solid #999;
-  padding: 0pt 0pt 0pt 19px;
-}
-
-blockquote, blockquote p {
   font-size: 15px;
 }
 
@@ -154,16 +143,12 @@ a.glyph-permalink:hover {
   color: #aa0000;
 }
 
-code {
-  background-color: #eef;
-  font-size: 85%;
-  font-family: "Consolas", "Courier New";
-  display: block;
-  padding: 0.5em 1em;
+/* I like a slightly darker outline to the large code blocks */
+pre > code {
   border: 1px solid #bebab0;
-  margin-bottom: 1em;
 }
 
+/* Keep the body aligned at the left edge */
 .columns {
     margin-left: 0%;
 }

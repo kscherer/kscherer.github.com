@@ -10,7 +10,7 @@ on OE-Core and Poky) on different hosts. The actual build is done on a
 bind mount outside of the container so I did not expect the storage
 backend to affect performance, but it did.
 
-See https://github.com/docker/docker/issues/2891 for full history.
+See [Docker Issue #2891][1] for full history.
 
 ### Setup
 
@@ -114,3 +114,5 @@ My options are:
 There are reports of problems with Overlayfs and using rpm inside a
 container. I will do some more testing with Overlayfs, but it seems my
 best option now is to move all my Ubuntu builders to use Overlayfs.
+
+[1]: https://github.com/docker/docker/issues/2891
