@@ -2,14 +2,9 @@
 layout: default
 title: Home
 ---
-
-
 {% for post in paginator.posts %}
   <div align="right" class="date-container">{{ post.date | date:"%A, %e %B %Y" | upcase }}</div>
-  <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
-<!--
-  <h1>{{ post.title }} <a class="glyph-permalink" href="{{ post.url }}" title="Permanent link to: '{{ post.title }}'">&infin;</a></h1> 
--->
+  <h1>{{ post.title }} <a class="glyph-permalink" href="{{ post.url }}" title="Permanent link to: '{{ post.title }}'">&infin;</a></h1>
   <div class="content">
     {{ post.content }}
   </div>
@@ -29,7 +24,7 @@ title: Home
   {% endif %}
   <span class="page_number ">Page: {{paginator.page}} of {{paginator.total_pages}}</span>
   {% if paginator.next_page %}
-    <a href="/page{{paginator.next_page}}" class="next ">Next</a>
+    <a href="/blog/page{{paginator.next_page}}" class="next ">Next</a>
   {% else %}
     <span class="next ">Next</span>
   {% endif %}

@@ -3,9 +3,10 @@
 permalink: /:categories/:year/:month/:day/:title 
 
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
-pygments: true
+highlighter: pygments
 baseurl: /
 paginate: 3
+paginate_path: "/blog/page:num/"
 markdown: kramdown
 
 # Themes are encouraged to use these universal variables 
@@ -15,7 +16,7 @@ title : Another Blog
 tagline: Trying to be a producer, not just a consumer of content
 author :
   name : Konrad Scherer
-  email : konrad@darnok.net
+  email : kmscherer@gmail.com
   github : kscherer
 #  twitter : username
 #  feedburner : feedname
