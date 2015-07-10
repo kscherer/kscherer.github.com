@@ -5,18 +5,19 @@ title: Home
 
 
 {% for post in paginator.posts %}
-
-   <!-- here add you post markup -->
   <div align="right" class="date-container">{{ post.date | date:"%A, %e %B %Y" | upcase }}</div>
+  <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+<!--
   <h1>{{ post.title }} <a class="glyph-permalink" href="{{ post.url }}" title="Permanent link to: '{{ post.title }}'">&infin;</a></h1> 
+-->
   <div class="content">
     {{ post.content }}
   </div>
-    {% if forloop.last == false %}
-      </br>
-      <hr class="front">
-      </br>
-    {% endif %}
+  {% if forloop.last == false %}
+  </br>
+    <hr class="front">
+  </br>
+  {% endif %}
 {% endfor %}
 
 <!-- Pagination links -->
@@ -33,5 +34,4 @@ title: Home
     <span class="next ">Next</span>
   {% endif %}
   <a href="{{ site.baseurl }}pages/archive.html">Archive</a>
-
 </div>
