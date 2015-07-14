@@ -8,6 +8,7 @@
    <title>{{ page.title }}</title>
    {% endif %}
    <meta name="author" content="Konrad Scherer" />
+   <link rel="alternate" type="application/atom+xml" href="{{ site.baseurl }}atom.xml" title="Atom feed">
 
    <!-- syntax highlighting CSS -->
    <link rel="stylesheet" href="{{ site.baseurl }}css/syntax.css" type="text/css" />
@@ -16,7 +17,6 @@
    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}css/normalize.css">
    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}css/skeleton.css">
    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}css/layout.css">
-
 </head>
 <body>
 
@@ -34,6 +34,7 @@
         <li><a href="{{ site.baseurl }}pages/about.html">About</a></li>
         <li><a href="{{ site.baseurl }}pages/projects.html">Projects</a></li>
         <li><a href="{{ site.baseurl }}pages/archive.html">Archive</a></li>
+        <li><a href="{{ site.baseurl }}atom.xml">RSS</a></li>
       </ul>
     </div>
 

@@ -18,15 +18,12 @@
 /* #Site Styles
 ================================================== */
 
-body {
-  color: #000000;
-  font: 15px/22px "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
+/* Add a bit of room at the top of the page */
 .container {
   margin-top: 25px;
 }
 
+/* Make a separater and make the footer smaller and gray */
 .container .footer {
   font-size: 80%;
   color: #666;
@@ -66,7 +63,7 @@ a:hover {
 
 a, a:visited {
   color: #0000a9;
-  text-decoration: non;
+  text-decoration: none;
   outline: 0;
 }
 
