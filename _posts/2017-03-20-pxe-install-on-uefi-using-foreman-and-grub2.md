@@ -54,6 +54,10 @@ working. There was one more bug in the PXEGRUB2 boot template
 involving an assumption about Profiles. I opened an issue and have
 submitted a PR to the community templates for this.
 
+Foreman 1.14.2 was also missing the Preseed default PXEGrub2 template,
+but one had already been submitted to the community templates repo, so
+I had to manually add [this template][7] to my provisioning templates.
+
 ### TFTP preparation
 
 Foreman adds a DHCP record which contains the following:
@@ -111,3 +115,4 @@ want to. The menus and boot to local disk are working.
 [4]: http://archive.ubuntu.com/ubuntu/dists/xenial/main/uefi/grub2-amd64/current/grubnetx64.efi.signed
 [5]: http://archive.ubuntu.com/ubuntu/dists/xenial/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/
 [6]: https://download-ib01.fedoraproject.org/pub/fedora/linux/releases/25/Server/x86_64/os/EFI/BOOT/grubx64.efi
+[7]: https://github.com/theforeman/community-templates/blob/develop/provisioning_templates/PXEGrub2/preseed_default_pxegrub2.erb
