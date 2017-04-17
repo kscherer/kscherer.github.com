@@ -65,11 +65,16 @@ wiki had a helpful post covering [UEFI PXE netboot][3]
 
 I was able to find the xenial grubnetx64.efi [here][4]. But it turns
 out the Debian/Ubuntu grub2 is missing a few useful features that have
-been added to the Fedora grub2. The Ubuntu grub2 only looks for
-grub/grub.conf whereas the Fedora grub looks in grub2 and looks for
-grub.cfg-[mac address] which is a convention that Foreman
-expects. Since Foreman is a project mostly run by RedHat employees
-it makes sense. The Fedora prebuilt grub2 bootloader is [here][6].
+been added to the Fedora grub2. The Ubuntu/vanilla grub2 only looks
+for grub/grub.conf whereas the Fedora grub2 has patches to search the
+grub2 directory and search for grub.cfg-[mac address] which is a
+convention that Foreman expects. Since Foreman is a project mostly run
+by RedHat employees it makes sense. The Fedora prebuilt grub2
+bootloader is [here][6].
+
+There is PR which adds a default grub/grub.cfg and uses the grub2
+regexp feature to search for $prefix/grub.cfg-[mac address]. This
+means that will support vanilla Grub2 soon.
 
 Foreman will also place the correct kernel and initrd into the boot
 directory. It will not replace an older kernel, so sometimes a newer
@@ -99,7 +104,6 @@ Here is how this works:
 The deficiencies of the previous process have been addressed. GRUB2
 can boot the 16.04 kernels and even the hwe kernels and installer if I
 want to. The menus and boot to local disk are working.
-
 
 [1]: https://theforeman.org/
 [2]: http://www.syslinux.org/wiki/index.php?title=The_Syslinux_Project
