@@ -75,6 +75,59 @@ business value work on our team.
 
 At its core, Jenkins is a cluster manager and a batch job
 scheduler. It is also a plugin manager, but that isn't directly
-relevant to this discussion.
+relevant to this discussion. For a long time Jenkins was probably the
+most common open source cluster manager. It is only recently with rise
+of datacenter scale computers that more sophisticated cluster managers
+have become available. In 2019 the major open source cluster managers
+are Kubernetes, Nomad, Mesos + Marathon and Docker Swarm. Where
+Jenkins is designed around batch jobs with an expected end time, newer
+cluster managers are designed around the needs of a long lived
+service. These managers have support for batch jobs, but it isn't the
+primary abstraction. They also have many features that Jenkins does
+not:
+
+- Each job specifies its resource requirements. Jenkins only supports
+  label selectors for choosing hosts
+- The jobs are packed to maximize utilization of the systems. Jenkins
+  by default will pack on a single machine and will prefer to reuse
+  workareas.
+- Each manager supports high availability configurations in the open
+  source version whereas the HA feature for Jenkins is an Enterprise
+  only feature
+- Jobs can specify complex affinities and constraints on where the
+  jobs can run.
+- Each manager has integration with various container runtimes,
+  storage and network plugins. Jenkins has integration with Docker but
+  generally doesn't manage storage or network settings.
+
+So by comparison Jenkins looks like a very limited scheduler, but it
+does have pipeline support which none of the other projects does. So I
+started exploring projects that add pipeline support to these
+schedulers. I found many very new projects like Argo and Tekton for
+Kubernetes, There are plugins for Jenkins that allow it to use
+Kubernetes, Nomad or Mesos, but they can't really take advantage of
+all the features.
+
+## Cluster manager comparison
+
+Now I will compare the features of the cluster managers which I feel
+are most relevant to build cluster setup.
+
+### Ease of setup and maintenance
+
+Docker Swarm: Very easy setup, automatic cert creation and rotation,
+no WAN support, transparent overlay network setup, HA easy to setup.
+
+Nomad: Install is a simple binary, integration with Consul for HA,
+encrypted communications, no network setup, plugins for job executors
+including Docker, WAN setup supported by Consul, Support for Service,
+Batch and System jobs.
+
+Mesos + Marathon: Complicated installation and setup, HA requires
+zookeeper setup, support for Docker and custom containerizor, no
+network setup be default, no federation or WAN support.
+
+Kubernetes: Complicated setup
+
 
 [1]: https://github.com/WindRiver-OpenSourceLabs/ci-scripts
