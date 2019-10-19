@@ -111,23 +111,105 @@ all the features.
 ## Cluster manager comparison
 
 Now I will compare the features of the cluster managers which I feel
-are most relevant to build cluster setup.
+are most relevant to build cluster setup:
 
-### Ease of setup and maintenance
+- How easy is the setup and maintenance?
+- How complicated is the HA setup?
+- Can it be run across multiple datacenters, i.e. Federated?
+- Community and Industry support?
 
-Docker Swarm: Very easy setup, automatic cert creation and rotation,
-no WAN support, transparent overlay network setup, HA easy to setup.
+Docker Swarm:
 
-Nomad: Install is a simple binary, integration with Consul for HA,
-encrypted communications, no network setup, plugins for job executors
-including Docker, WAN setup supported by Consul, Support for Service,
-Batch and System jobs.
+- Very easy setup
+- Automatic cert creation and rotation
+- transparent overlay network setup
+- HA easy to setup
+- no WAN support
+- Docker Inc. is focused on Kubernetes and future of Swarm is uncertain
 
-Mesos + Marathon: Complicated installation and setup, HA requires
-zookeeper setup, support for Docker and custom containerizor, no
-network setup be default, no federation or WAN support.
+Nomad:
 
-Kubernetes: Complicated setup
+- Install is a simple binary
+- integration with Consul for HA
+- encrypted communications
+- no network setup
+- plugins for job executors including Docker
+- WAN setup supported by Consul
+- Support for Service, Batch and System jobs
+- Runs at large scale
+- Well supported by Hashicorp and community
+- job configuration in json or hcl
 
+Mesos + Marathon:
+
+- Support for Docker and custom containerizer
+- No network setup by default
+- Runs at large scale at Twitter
+- Commercial support available
+- Complicated installation and setup
+- HA requires zookeeper setup
+- no federation or WAN support
+- Small community
+
+Kubernetes:
+
+- Very popular with lots of managed options
+- Runs at large scale at many companies
+- Supports build extensions like Tekton and Argo
+- Federation support
+- Lots of support options and great community
+- Complicated setup and configuration
+- Requires setup and management of etcd
+- Requires setup and rotation of certs
+- Requires network overlay setup using one of 10+ network plugins like Flannel
+
+In my experience with Wrigel, Docker Swarm has worked well. It is only
+its uncertain future that has encouraged me to look at Nomad.
+
+## Running Pipelines outside Jenkins
+
+Many years ago I saw a reference to a small tool on Github called
+[Walter][6]. The idea is have a small go tool that can execute a
+sequence of tasks as specified in a yaml file. It can execute steps
+serially or in parallel. Each stage can have an unlimited number of
+tasks and some cleanup tasks. Initially it supported only two stages
+so I modified it to support unlimited stages. This tool can only
+handle a single node pipeline, but that covers a lot of use cases. Now
+the logic for building the pipeline is in the code that generates the
+yaml file and not inside a Jenkinsfile. Ideally a developer could
+download the yaml file and the walter binary and recreate the entire
+build sequence on a local development machine. The temptation is to
+have the yaml file call shell scripts, but by placing the full
+commands in the yaml file with proper escaping each command could be
+cut and pasted out of the yaml and run on a terminal.
+
+## Workflow Support
+
+It turns out that Jenkins Pipelines are an implementation of a much
+larger concept called Workflow. Scientific computing has been building
+multi-node cluster workflow engines for a long time. There is a list
+of [awesome workflow engines][2] on Github. I find the concept of
+directed acyclic graphs of workflow steps as mentioned by [Apache
+Airflow][3] very interesting because it matches my mental model of
+some of our larger build jobs.
+
+With a package like [Luigi][4], the workflow can be encoded as a graph
+of tasks and executed on a scheduler using "contribs", which are
+interfaces to services outside of Luigi. There are [contribs][5] for
+Kubernetes, AWS, ElasticSearch and more.
+
+## Conclusion
+
+With a single node pipeline written in yaml and executed by walter and
+a multi node workflow built in Luigi, the build logic would be
+independent of the cluster manager and scheduler. A developer could
+run the workflows on a machine not managed by a cluster
+manager. The build steps could be fairly easily executed on a cluster
+managed by Jenkins, Nomad or Kubernetes.
 
 [1]: https://github.com/WindRiver-OpenSourceLabs/ci-scripts
+[2]: https://github.com/meirwah/awesome-workflow-engines
+[3]: https://airflow.apache.org/
+[4]: https://github.com/spotify/luigi
+[5]: https://luigi.readthedocs.io/en/stable/api/luigi.contrib.html
+[6]: https://github.com/walter-cd/walter
