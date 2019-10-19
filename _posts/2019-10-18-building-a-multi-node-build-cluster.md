@@ -71,6 +71,20 @@ the churn I am reluctant to ship Jenkins as part of a potential
 commercial product because each CVE would impose additional non
 business value work on our team.
 
+## Docker and the root access problem
+
+Docker is an amazing tool and has completely transformed the way I
+work. One major problem is that giving a build script access to run
+Docker is equivalent to giving root on the machine. Since most build
+clusters are internal systems running mostly trusted code it isn't a
+huge problem, but I have always been interested in
+alternatives. Recently Podman and rootless Docker have announced
+support for user namespaces. I was able to do a Yocto build using
+Podman and user namespaces with the 4.18 kernel so huge progress has
+been made. I would prefer that the build system required as little
+root access as possible, so I will continue to investigate using
+rootless Podman and/or Docker.
+
 ## Breaking down the problem
 
 At its core, Jenkins is a cluster manager and a batch job
@@ -203,9 +217,10 @@ Kubernetes, AWS, ElasticSearch and more.
 With a single node pipeline written in yaml and executed by walter and
 a multi node workflow built in Luigi, the build logic would be
 independent of the cluster manager and scheduler. A developer could
-run the workflows on a machine not managed by a cluster
-manager. The build steps could be fairly easily executed on a cluster
-managed by Jenkins, Nomad or Kubernetes.
+run the workflows on a machine not managed by a cluster manager. The
+build steps could be fairly easily executed on a cluster managed by
+Jenkins, Nomad or Kubernetes. Combined with rootless containers the
+final solution would be much more secure than current solutions.
 
 [1]: https://github.com/WindRiver-OpenSourceLabs/ci-scripts
 [2]: https://github.com/meirwah/awesome-workflow-engines
