@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Git Server option bigFileThreshold"
-category: Linux Git
-tags: [linux git]
+category: Git
+tags: [git]
 ---
 
 # Introduction
@@ -90,4 +90,4 @@ higher disk usage. Git already is very efficient in this regard.
 *UPDATE* This setting can cause disk space issues on linux kernel
 repos. See [update here][1]
 
-[1]: /2021/02/11/update-git-server-option-bigfilethreshold.html
+[1]: /git/2021/02/11/update-git-server-option-bigfilethreshold.html

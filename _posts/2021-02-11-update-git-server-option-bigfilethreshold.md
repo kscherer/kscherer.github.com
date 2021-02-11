@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Update: Git Server option bigFileThreshold"
-category: Linux Git
-tags: [linux git]
+category: Git
+tags: [git]
 ---
 
 # Introduction
