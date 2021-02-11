@@ -86,3 +86,8 @@ when cloning.
 This setting seems very reasonable to me. The chance of having a text
 file larger than 100Kb is very low and the only downside is slightly
 higher disk usage. Git already is very efficient in this regard.
+
+*UPDATE* This setting can cause disk space issues on linux kernel
+repos. See [update here][1]
+
+[1]: /2021/02/11/update-git-server-option-bigfilethreshold.html
