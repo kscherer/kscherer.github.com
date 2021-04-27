@@ -56,3 +56,18 @@ Once the problem has been clearly identified the solution is usually
 simple. In this case the gitolite config for all the kernel repos sets
 the core.bigFileThreshold to its default value of 512m. This way all
 the other repos can still use the smaller bigFileThreshold setting.
+
+There is also a way to tell git not to delta compress files with
+certain extensions. I created a global git attributes file
+/etc/gitattributes with the following content:
+
+    *.bz2 binary -delta
+    *.gz binary -delta
+    *.xz binary -delta
+    *.tgz binary -delta
+    *.zip binary -delta
+    *.lz binary -delta
+
+Which covers all the compressed files in our repos and it had the same
+effect so I reverted the bigFileThreshold option to the default of
+512M.
