@@ -53,6 +53,7 @@ Next came the manual step of actually replacing the drive.
 After inserting the new disk I was able to determine the physical disk
 number and recreate the RAID-0 virtual disk.
 
+    > omconfig storage controller action=discardpreservedcache controller=0 force=enabled
     > omconfig storage controller controller=0 action=createvdisk raid=r0 size=max pdisk=0:1:6
 
 I use single drive RAID0 because I prefer that ZFS use the disks in
